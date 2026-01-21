@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio professionnel de Doha SAADAOUI, développeuse Full Stack passionnée par la création d'applications web performantes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Doha SAADAOUI | Développeuse Full Stack</title>
+    <style>
+        :root {
+            --primary: #51265B;
+            --secondary: #8D5F8C;
+            --accent: #6B3F69;
+            --light: #CFCED3;
+            --background: #F9F7FA;
+            --white: #FFFFFF;
+            --shadow: rgba(81, 38, 91, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: "Archivo Black", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            min-height: 100vh;
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .lang-btn:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        /* Navigation */
+        #menu-icon {
+            font-size: 30px;
+            color: var(--primary);
+            z-index: 10001;
+            cursor: pointer;
+            display: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav a {
+            background: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 20px;
+            text-align: center;
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            border: 2px solid transparent;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--light);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .nav a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .nav a:hover::before {
+            left: 0;
+        }
+
+        .nav a.active {
+            background: var(--light);
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 100px 5% 50px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Page */
+        .home-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .content {
+            max-width: 650px;
+            width: 100%;
+            color: var(--primary);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        /* Typography */
+        .greeting {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .tagline {
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            color: var(--primary);
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            width: 200px;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-family: "Archivo Black", sans-serif;
+            border: 2px solid var(--secondary);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            color: var(--light);
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary {
+            color: var(--secondary);
+            background-color: var(--light);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--light);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-primary::before {
+            background: var(--light);
+        }
+
+        .btn-secondary::before {
+            background: var(--secondary);
+        }
+
+        .btn:hover {
+            letter-spacing: 2px;
+            box-shadow: 0 7px 20px var(--shadow);
+            transform: translateY(-5px);
+        }
+
+        .btn-primary:hover {
+            color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            color: var(--light);
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            transition: 0.1s;
+        }
+
+        /* Projects Page */
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: var(--light);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* About Page */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .about-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 5rem;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .skills-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .skill-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-size: 0.8rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        /* Contact Page */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .contact-details h3 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+            font-family: "Archivo Black", sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(81, 38, 91, 0.9);
+            color: var(--light);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .home-container {
+                justify-content: center;
+            }
+            
+            .content {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 40px 20px;
+                transition: all 0.5s ease;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 999;
+            }
+
+            .nav.open {
+                right: 0;
+            }
+
+            .nav a {
+                width: 100%;
+                margin: 10px 0;
+                padding: 12px 20px;
+            }
+
+            #menu-icon {
+                display: block;
+                z-index: 1000;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .language-toggle {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page {
+                padding: 80px 5% 30px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            h1::after {
+                width: 80px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <a href="#" class="logo">Portfolio</a>
+        <div class="nav">
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="ar">AR</button>
+            </div>
+            <a href="#home" class="nav-link active" data-page="home">Accueil</a>
+            <a href="#projects" class="nav-link" data-page="projects">Projets</a>
+            <a href="#about" class="nav-link" data-page="about">À propos</a>
+            <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+        </div>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="home-container">
+            <div class="content">
+                <p class="greeting" data-key="greeting">Bonjour, je suis</p>
+                <h1>Doha SAADAOUI</h1>
+                <p class="tagline" data-key="tagline">
+                    Développeuse <span class="highlight">Full Stack</span> passionnée par la création
+                    d'applications web performantes et d'expériences utilisateur exceptionnelles.
+                </p>
+                <div class="btn-container">
+                    <button class="btn btn-primary" data-page="projects" data-key="viewProjects">Voir mes projets</button>
+                    <button class="btn btn-secondary" data-page="contact" data-key="contactMe">Me contacter</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section id="projects" class="page">
+        <div class="projects-container">
+            <h2 class="section-title" data-key="myProjects">Mes Projets</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class='bx bx-shopping-bag'></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-key="project1Title">Plateforme E-commerce</h3>
+                        <p class="project-description" data-key="project1Desc">Plateforme e-commerce complète avec système de paiement, gestion des stocks et interface administrateur.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                        <button class="btn btn-primary" data-key="viewProject">Voir le projet</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class='bx bx-task'></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-key="project2Title">Système de gestion commerciale et de ventes</h3>
+                        <p class="project-description" data-key="project2Desc">SmartBiz est une application web moderne et responsive conçue pour
+                        aider les entreprises à gérer leurs ventes, clients, produits, achats et rapports — le tout depuis un seul tableau de bord.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">MYSQL</span>
+                            <span class="tech-tag">BOOTSTRAP</span>
+                        </div>
+                        <button class="btn btn-primary" data-key="viewProject">Voir le projet</button>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class='bx bx-news'></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-key="project3Title">Application Météo</h3>
+                        <p class="project-description" data-key="project3Desc">Application météo avec prévisions sur 7 jours, géolocalisation et interface responsive.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">API REST</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                        <button class="btn btn-primary" data-key="viewProject">Voir le projet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <div class="about-container">
+            <h2 class="section-title" data-key="aboutMe">À Propos de Moi</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <i class='bx bx-user'></i>
+                </div>
+                <div class="about-text">
+                    <p data-key="aboutText1">Je suis une étudiante en deuxième année à l'ISTISG de Berrechid, spécialisée en développement web full-stack. Je suis motivée, sérieuse et passionnée par le développement d'applications web modernes.</p>
+                    <p data-key="aboutText3">Je suis constamment à la recherche de nouveaux défis et opportunités pour améliorer mes compétences et contribuer à des projets innovants.</p>
+                </div>
+            </div>
+            
+            <div class="skills-container">
+                <h2 class="section-title" data-key="mySkills">Mes Compétences</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 data-key="frontend">Frontend</h3>
+                        <div class="skill-icons">
+                            <div class="skill-icon">
+                                <i class="fab fa-html5"></i>
+                                <span class="skill-name">HTML5</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-css3-alt"></i>
+                                <span class="skill-name">CSS3</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-js"></i>
+                                <span class="skill-name">JavaScript</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-react"></i>
+                                <span class="skill-name">React</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 data-key="backend">Backend</h3>
+                        <div class="skill-icons">
+                            <div class="skill-icon">
+                                <i class="fab fa-node-js"></i>
+                                <span class="skill-name">Node.js</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-python"></i>
+                                <span class="skill-name">Python</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-php"></i>
+                                <span class="skill-name">PHP</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                                <span class="skill-name">MySQL</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fas fa-server"></i>
+                                <span class="skill-name">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 data-key="tools">Outils & Technologies</h3>
+                        <div class="skill-icons">
+                            <div class="skill-icon">
+                                <i class="fab fa-git-alt"></i>
+                                <span class="skill-name">Git</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fab fa-figma"></i>
+                                <span class="skill-name">Figma</span>
+                            </div>
+                            <div class="skill-icon">
+                                <i class="fas fa-code-branch"></i>
+                                <span class="skill-name">Agile/Scrum</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <div class="contact-container">
+            <h2 class="section-title" data-key="contactMe">Contactez-moi</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class='bx bx-envelope'></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-key="email">Email</h3>
+                            <p>saadaouidoha18@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class='bx bx-phone'></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-key="phone">Téléphone</h3>
+                            <p>+212 630 878 629</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class='bx bx-map'></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-key="location">Localisation</h3>
+                            <p data-key="city">Berrechid, Maroc</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class='bx bx-share-alt'></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-key="socialMedia">Réseaux sociaux</h3>
+                            <div style="display: flex; gap: 15px; margin-top: 10px;">
+                                <a href="https://linkedin.com/in/doha-saadaoui-9a8894334" style="color: var(--primary); font-size: 1.5rem;"><i class='bx bxl-linkedin'></i></a>
+                                <a href="https://github.com/Do7a-Saadaoui" style="color: var(--primary); font-size: 1.5rem;"><i class='bx bxl-github'></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" data-key="name">Nom</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" data-key="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" data-key="subject">Sujet</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" data-key="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" data-key="sendMessage">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-key="copyright">&copy; 2026 Doha SAADAOUI. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Language data
+        const translations = {
+            fr: {
+                greeting: "Bonjour, je suis",
+                tagline: "Développeuse <span class='highlight'>Full Stack</span> passionnée par la création d'applications web performantes et d'expériences utilisateur exceptionnelles.",
+                viewProjects: "Voir mes projets",
+                contactMe: "Me contacter",
+                myProjects: "Mes Projets",
+                project1Title: "Plateforme E-commerce",
+                project1Desc: "Plateforme e-commerce complète avec système de paiement, gestion des stocks et interface administrateur.",
+                project2Title: "Système de gestion commerciale et de ventes",
+                project2Desc: "SmartBiz est une application web moderne et responsive conçue pour aider les entreprises à gérer leurs ventes, clients, produits, achats et rapports — le tout depuis un seul tableau de bord.",
+                project3Title: "Application Météo",
+                project3Desc: "Application météo avec prévisions sur 7 jours, géolocalisation et interface responsive.",
+                viewProject: "Voir le projet",
+                aboutMe: "À Propos de Moi",
+                aboutText1: "Je suis Étudiante en 2ᵉ année à l’ISTISG Berrechid, spécialisée en développement web full stack. Motivée, sérieuse et passionnée par le développement d’applications web modernes.",
+                aboutText3: "Je suis constamment à la recherche de nouveaux défis et opportunités pour améliorer mes compétences et contribuer à des projets innovants.",
+                mySkills: "Mes Compétences",
+                frontend: "Frontend",
+                backend: "Backend",
+                tools: "Outils & Technologies",
+                name: "Nom",
+                subject: "Sujet",
+                message: "Message",
+                sendMessage: "Envoyer le message",
+                copyright: "&copy; 2026 Doha SAADAOUI. Tous droits réservés.",
+                email: "Email",
+                phone: "Téléphone",
+                location: "Localisation",
+                city: "Berrechid, Maroc",
+                socialMedia: "Réseaux sociaux"
+            },
+            en: {
+                greeting: "Hello, I'm",
+                tagline: "<span class='highlight'>Full Stack</span> Developer passionate about creating performant web applications and exceptional user experiences.",
+                viewProjects: "View my projects",
+                contactMe: "Contact me",
+                myProjects: "My Projects",
+                project1Title: "E-commerce Pm",
+                project1Desc: "Complete e-commerce platform with payment system, stock management and admin interface.",
+                project2Title: "Business Management System",
+                project2Desc: "SmartBiz is a modern, responsive web application built to help businesses manage sales, customers, products, purchases, and reports — all from one dashboard.",
+                project3Title: "Weather App",
+                project3Desc: "Weather application with 7-day forecasts, geolocation and responsive interface.",
+                viewProject: "View project",
+                aboutMe: "About Me",
+                aboutText1: "I am a second-year student at ISTISG Berrechid, specializing in full-stack web development. I am motivated, serious, and passionate about developing modern web applications.",
+                aboutText3: "I am constantly looking for new challenges and opportunities to improve my skills and contribute to innovative projects.",
+                mySkills: "My Skills",
+                frontend: "Frontend",
+                backend: "Backend",
+                tools: "Tools & Technologies",
+                name: "Name",
+                subject: "Subject",
+                message: "Message",
+                sendMessage: "Send message",
+                copyright: "&copy; 2026 Doha SAADAOUI. All rights reserved.",
+                email: "Email",
+                phone: "Phone",
+                location: "Location",
+                city: "Berrechid, Maroc",
+                socialMedia: "Social Media"
+            },
+            ar: {
+                greeting: "مرحباً، أنا",
+                tagline: "مطورة <span class='highlight'>Full Stack</span> شغوفة بإنشاء تطبيقات ويب عالية الأداء وتجارب مستخدم استثنائية.",
+                viewProjects: "عرض مشاريعي",
+                contactMe: "اتصل بي",
+                myProjects: "مشاريعي",
+                project1Title: "منصة التجارة الإلكترونية",
+                project1Desc: "منصة تجارة إلكترونية كاملة مع نظام دفع وإدارة المخزون وواجهة إدارة.",
+                project2Title: "نظام إدارة المبيعات والأعمال التجارية",
+                project2Desc: "SmartBiz هو تطبيق ويب حديث ومتجاوب، صُمم لمساعدة الشركات على إدارة المبيعات والعملاء والمنتجات والمشتريات والتقارير — كل ذلك من خلال لوحة تحكم واحدة.",
+                project3Title: "تطبيق الطقس",
+                project3Desc: "تطبيق الطقس مع توقعات لمدة 7 أيام، وتحديد الموقع الجغرافي وواجهة متجاوبة.",
+                viewProject: "عرض المشروع",
+                aboutMe: "عني",
+                aboutText1: "أنا طالبة في السنة الثانية بجامعة ISTISG برباط، متخصصة في تطوير الويب الشامل. أنا متحمسة، جادة، وشغوفة بتطوير تطبيقات الويب الحديثة.",
+                aboutText3: "أبحث باستمرار عن تحديات وفرص جديدة لتحسين مهاراتي والمساهمة في مشاريع مبتكرة.",
+                mySkills: "مهاراتي",
+                frontend: "الواجهة الأمامية",
+                backend: "الواجهة الخلفية",
+                tools: "الأدوات والتقنيات",
+                name: "الاسم",
+                subject: "الموضوع",
+                message: "الرسالة",
+                sendMessage: "إرسال الرسالة",
+                copyright: "&copy; 202 ضحى السعداوي. جميع الحقوق محفوظة.",
+                email: "البريد الإلكتروني",
+                phone: "الهاتف",
+                location: "الموقع",
+                city: "برشيد، المغرب",
+                socialMedia: "وسائل التواصل الاجتماعي"
+            }
+        };
+
+        // Set initial language
+        let currentLang = 'fr';
+
+        // Language toggle functionality
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Change language
+                currentLang = this.dataset.lang;
+                updateLanguage();
+                
+                // Update HTML direction for Arabic
+                if (currentLang === 'ar') {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                } else {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = currentLang;
+                }
+            });
+        });
+
+        // Update all text elements with translations
+        function updateLanguage() {
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[currentLang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[currentLang][key];
+                    } else {
+                        element.innerHTML = translations[currentLang][key];
+                    }
+                }
+            });
+        }
+
+        // Menu Toggle
+        let menu = document.querySelector('#menu-icon');
+        let nav = document.querySelector('.nav');
+        let body = document.querySelector('body');
+
+        menu.onclick = () => {
+            menu.classList.toggle('bx-x');
+            nav.classList.toggle('open');
+            body.classList.toggle('menu-open');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Page Navigation
+        document.querySelectorAll('.nav-link, .btn').forEach(element => {
+            element.addEventListener('click', function(e) {
+                if (this.dataset.page) {
+                    e.preventDefault();
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    
+                    if (this.classList.contains('nav-link')) {
+                        this.classList.add('active');
+                    } else {
+                        document.querySelector(`.nav-link[data-page="${this.dataset.page}"]`).classList.add('active');
+                    }
+                    
+                    // Show selected page
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    document.getElementById(this.dataset.page).classList.add('active');
+                    
+                    // Close mobile menu if open
+                    if (nav.classList.contains('open')) {
+                        menu.classList.remove('bx-x');
+                        nav.classList.remove('open');
+                        body.classList.remove('menu-open');
+                    }
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                }
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert(currentLang === 'fr' ? 'Merci pour votre message! Je vous répondrai dans les plus brefs délais.' :
+            currentLang === 'en' ? 'Thank you for your message! I will get back to you as soon as possible.' :
+            'شكراً على رسالتك! سأرد عليك في أقرب وقت ممكن.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
